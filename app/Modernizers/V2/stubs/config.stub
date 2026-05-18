@@ -1,0 +1,12 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * {{ namespace }} configuration.
+ *
+ * Migrated from Configure::write() by folivoro/climb.
+ *
+ * @see https://folivoro.com/docs/upgrade/
+ */
+return {{ data }};

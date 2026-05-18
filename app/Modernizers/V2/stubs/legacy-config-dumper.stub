@@ -1,0 +1,27 @@
+<?php
+
+/**
+ * Plugin Name: Legacy Config Dumper
+ * Description: Dumps Sloth v1 Configure values to climb-config.json for migration by folivoro/climb.
+ *              Automatically removed by climb after the dump is complete.
+ * Version:     1.0.0
+ */
+
+add_action('init', function () {
+    if (!class_exists('Configure')) {
+        return;
+    }
+
+    $config = Configure::read();
+
+    array_walk_recursive($config, function (&$value): void {
+        if (is_object($value) || $value instanceof Closure) {
+            $value = '__NOT_SERIALIZABLE__';
+        }
+    });
+
+    file_put_contents(
+        __DIR__ . '/{{ RELATIVE_ROOT }}/climb-config.json',
+        json_encode($config, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)
+    );
+}, 999);

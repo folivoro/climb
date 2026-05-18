@@ -1,0 +1,31 @@
+<?php
+
+declare(strict_types=1);
+
+namespace {{ namespace }}\Extensions\View;
+
+use Sloth\View\Extensions\AbstractViewExtension;
+
+/**
+ * Migrated from Configure::write('theme.twig.functions') by folivoro/climb.
+ *
+ * Original function name: '{{ name }}'
+ *
+ * @see https://folivoro.com/docs/views/
+ */
+class {{ className }} extends AbstractViewExtension
+{
+    /**
+     * @return array<string, callable>
+     */
+    public function getDirectives(): array
+    {
+        return ['{{ name }}' => $this];
+    }
+
+    {{ docBlock }}
+    public function __invoke({{ params }}){{ returnType }}
+    {
+        {{ body }}
+    }
+}
